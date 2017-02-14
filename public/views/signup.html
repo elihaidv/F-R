@@ -1,0 +1,80 @@
+<div class="container" ng-controller="signupCtrl">
+    <div class="row centered-form">
+        <div class=" col-sm-6 col-sm-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please sign up for our app <small>It's free!</small></h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td></td>
+                            <td>
+                                <label class="control-label">Email</label>
+                            </td>
+                            <td>
+                                <form name="form">
+                                    <div ng-class="{'has-error':!form.input.$valid || !email}">
+                                        <input class="form-control" type="text" ng-model="email" name="input" ng-pattern="/\S+@\S+\.\S+/" />
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <label class="control-label">Password</label>
+                            </td>
+                            <td ng-class="{'has-error':!password}">
+                                <input type="password" ng-model="password" class="form-control">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <label class="control-label">Return Password</label>
+                            </td>
+                            <td ng-class="{'has-error':password!=return}">
+                                <input type="password" ng-model="return" class="form-control ">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <label class="control-label">Full Name</label>
+                            </td>
+                            <td ng-class="{'has-error':!fullName}">
+                                <input type="text" ng-model="fullName" class="form-control">
+
+                            </td>
+                        </tr>
+                        <tr ng-repeat="(ident, field) in fields" ng-mouseover="hover=true" ng-mouseleave="hover=false">
+                            <td class="col-xs-1">
+                                <button class="btn btn-danger btn-xs" ng-show="hover" ng-click="deleteField(ident)">X</button>
+                            </td>
+                            <td>
+                                <label class="control-label">{{ident}} </label>
+                            </td>
+                            <td>
+                                <input type="text" ng-model="fields[ident]" class="form-control">
+                            </td>
+                        </tr>
+                    </table>
+                    <div ng-repeat="msg in message" class="alert alert-danger" role="alert">{{msg}}</div>
+
+                    <button class="btn btn-success col-xs-offset-4  col-xs-4" ng-click="addfield()">+Add More Fields</button>
+
+                    <input type="submit" value="Register" ng-click="submit()" class="btn btn-info col-xs-offset-4  col-xs-4">
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
