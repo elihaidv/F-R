@@ -1,16 +1,19 @@
-var app = angular.module("findApp", ['ngRoute']);
+var app = angular.module("findApp", ['ngRoute', 'qrScanner']);
 app.config(['$routeProvider',
-    function config($routeProvider) {
+    function ($routeProvider) {
 
         $routeProvider.
         when('/', {
-            templateUrl: '/assets/views/main.html'
+            templateUrl: '/views/main.html'
         }).
         when('/signup', {
-            templateUrl: '/assets/views/signup.html'
+            templateUrl: '/views/signup.html'
+        }).
+        when('/qrscan', {
+            templateUrl: '/views/qrscan.html'
         }).
         when('/viewProfile/:userID', {
-            templateUrl: '/assets/views/viewProfile.html',
+            templateUrl: '/views/viewProfile.html',
             controller: 'viewController'
         }).
         otherwise('/');
@@ -37,3 +40,19 @@ app.controller("viewController", function ($scope, $routeParams, $http, $locatio
         $location.path("/signup");
     };
 })
+app.controller('qrCrtl', function ($scope, $location) {
+    qrcode.callback = function (data) {
+        $location.path(data);
+    }
+    $scope.onSuccess = function (data) {
+        console.log(data);
+        data = data.split("#")[1];
+        $location.path(data);
+    };
+    $scope.onError = function (error) {
+        console.log(error);
+    };
+    $scope.onVideoError = function (error) {
+        alert(error);
+    };
+});
