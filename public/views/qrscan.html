@@ -1,0 +1,10 @@
+<div ng-controller="qrCrtl" class="hidden-xs">
+    <qr-scanner width="400" height="300" ng-success="onSuccess(data)" ng-error="onError(error)" class="ng-isolate-scope">
+<video width="400" height="300" style="-moz-transform:rotateY(-180deg);-webkit-transform:rotateY(-180deg);transform:rotateY(-180deg);"></video>
+<canvas id="qr-canvas" width="400" height="300" style="display:none;"></canvas></qr-scanner>
+</div>
+<label class="btn btn-success btn-file  col-xs-8 col-xs-offset-2">
+    <img src="/images/png/glyphicons-12-camera.png"> Upload Photo
+    <input type="file" accept="image/*" style="display: none;" fileread="vm.uploadme">
+
+</label>
