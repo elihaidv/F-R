@@ -1,5 +1,5 @@
-app.controller("signupCtrl", function ($scope, $http, $location) {
-    $http.get("/fields").success(function (fields) {
+app.controller("signupCtrl", function ($scope, $http, $location, $rootScope, $filter, sessionOn) {
+    $http.get("/fields/" + $rootScope.lang).success(function (fields) {
         $scope.email = fields.email;
         $scope.fullName = fields.details.fullName;
         $scope.password = fields.password;
@@ -7,21 +7,21 @@ app.controller("signupCtrl", function ($scope, $http, $location) {
 
         delete fields.details.email;
         delete fields.details.fullName;
+        delete fields.details["שם מלא"];
         $scope.fields = fields.details;
     });
 
     $scope.addfield = function () {
         swal.withFormAsync({
-            title: 'Add new identifier',
-            text: 'Please Add any identifier that you want will appear in your profile',
+            title: $filter('translate')('SWAL_ADD_TITLE'),
+            text: $filter('translate')('SWAL_ADD'),
             showCancelButton: true,
-            confirmButtonColor: '#DD6B55',
-            confirmButtonText: 'Add',
+            confirmButtonText: $filter('translate')('ADD'),
             closeOnConfirm: true,
             formFields: [
                 {
                     id: 'ident',
-                    placeholder: 'Identifier'
+                    placeholder: $filter('translate')('IDENT')
                 }
             ]
         }).then(
@@ -42,31 +42,42 @@ app.controller("signupCtrl", function ($scope, $http, $location) {
     $scope.submit = function () {
         $scope.message = [];
         if (!/\S+@\S+\.\S+/.test($scope.email)) {
-            $scope.message.push("Please enter valid mail");
+            $scope.message.push($filter('translate')('MSG_EMAIL'));
         }
         if ($scope.password != $scope.return) {
-            $scope.message.push("Passwords are not match");
+            $scope.message.push($filter('translate')('MSG_PASS'));
         }
         if (!$scope.email || !$scope.password || !$scope.fullName) {
-            $scope.message.push("Red fields are required");
+            $scope.message.push($filter('translate')('MSG_RED'));
         }
 
         if ($scope.message.length == 0) {
             $scope.fields.fullName = $scope.fullName;
-            $http.post("/signup", {
+            sessionOn.signup({
                 password: $scope.password,
                 email: $scope.email,
                 details: $scope.fields
             }).success(function (data) {
-                swal("Success!", "Profile Created Successfully!", "success");
-                $location.path("/viewProfile/" + data);
+                swal($filter('translate')('SUCCESS'), $filter('translate')('SWAL_CREATE'), "success");
+                $location.path("/");
             }).error(function (err, code) {
                 if (code == 400) {
-                    swal("Error!", "Email already exits in the system!", "error");
+                    swal($filter('translate')('ERROR'), $filter('translate')('SWAL_EMAIL'), "error");
                 } else {
-                    swal("Error!", "Something Get Worng, Try again later", "error");
+                    swal($filter('translate')('ERROR'), $filter('translate')('SWAL_ERROR'), "error");
                 }
             });
         }
     };
 });
+document.addEventListener("deviceready", onDeviceReady, true);
+
+function onDeviceReady() {
+    document.addEventListener("backbutton", onBackKeyDown, false);
+}
+
+function onBackKeyDown(event) {
+    // Handle the back button
+    event.preventDefault();
+    alert('I am a demo purpose alert thingy');
+};

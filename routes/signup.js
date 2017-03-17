@@ -5,29 +5,27 @@ var randomstring = require("randomstring");
 
 router.post('/', (request, response) => {
 
-    col.find({
+    col.instance.findOne({
         email: request.body.email
     }, (err, items) => {
-        if (items.length > 0 && (!request.session.record || request.body.email != request.session.record.email)) {
+        if (items && (!request.session.record || request.body.email != request.session.record.email)) {
             response.status(400);
             response.send();
         } else {
             check((randStr) => {
                 request.body.profileKeys = request.session.record ? request.session.record.profileKeys : [randStr];
-                col.update({
+                col.instance.update({
                     profileKeys: request.body.profileKeys
                 }, request.body, {
                     upsert: true
                 }, function (err, count, status) {
-
-                    console.log(count);
                     if (!err) {
 
                         request.session.record = request.body;
                         request.session.record.details.email = request.body.email;
 
                         response.status(200);
-                        response.send(randStr);
+                        response.send(request.body.profileKeys);
                     } else {
                         response.status(500);
                         response.send();
@@ -42,12 +40,12 @@ router.post('/', (request, response) => {
 
 function check(collback) {
     var randStr = randomstring.generate(10);
-    col.find({
+    col.instance.findOne({
         profileKeys: {
             "$in": [randStr]
         }
-    }).count().then((i) => {
-        if (i > 0) {
+    }, (e, item) => {
+        if (item) {
             check(collback);
         } else {
             collback(randStr);

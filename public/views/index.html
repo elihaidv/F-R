@@ -1,26 +1,56 @@
 <html ng-app="findApp">
 
 <head>
+
     <script src="/javascripts/libs/angular.min.js"></script>
     <script src="/javascripts/libs/angular-route.min.js"></script>
+    <script src="/javascripts/libs/angular-translate.js"></script>
+
     <script src="/javascripts/libs/qr-scanner.js"></script>
     <script src="/javascripts/libs/jsqrcode-combined.min.js"></script>
     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" />
+    <link href="/stylesheets/bootstrap-rtl.min.css" rel="stylesheet" ng-if="$root.lang" />
     <link href="/stylesheets/sweet-alert.css" rel="stylesheet" />
     <script src="/javascripts/libs/sweet-alert.min.js"></script>
+    <script type='text/javascript' src="/javascripts/services.js">
+    </script>
     <script type='text/javascript' src="/javascripts/libs/swal-forms.js"></script>
     <script type='text/javascript' src="/javascripts/client.js"></script>
     <script type='text/javascript' src="/javascripts/signup.js"></script>
     <script type='text/javascript' src="/javascripts/directives.js"></script>
-
+    <script type='text/javascript' src="/javascripts/translator.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
+<style type="text/css">
+    @font-face {
+        font-family: "assume";
+        src: url(/Greetings.ttf) format("truetype");
+    }
+    
+    @font-face {
+        font-family: "hebrew";
+        src: url(/elliniaclm-light-webfont.ttf) format("truetype");
+    }
+</style>
 
-<body background="/images/back.jpg">
-    <div class="col-xs-12" style="height:50px;"></div>
+<body background="/images/back.jpg" ng-controller='openCtrl' style="
+  font-family: 'assume','hebrew';
+"><font size="4">
+    <button class="btn btn-danger" ng-class="{'pull-left':$root.lang,'pull-right':!$root.lang}"  ng-click="logOff()" ng-if="$root.isSession"><img src="/images/png/glyphicons-388-log-out.png"/>{{'LOG_OFF'|translate}}</button>
+    <img ng-click="changeLang()" ng-src="{{$root.lang && '/images/USA.png' || '/images/Israel.png'}}"/>
     <center>
-        <h1>F&R</h1></center>
-    <div ng-view></div>
+        <img src="/images/title.png" class="col-xs-8 col-sm-6 col-md-4 col-xs-offset-2 col-sm-offset-3 col-md-offset-4"/></center>
+    <div class="col-xs-12">
+    <nav class="navbar navbar-default col-sm-6 col-sm-offset-3" style="background-color: #96b5e8;">
+        <ul class="nav navbar-nav" ng-init="nav=1">
+            <li ng-class="{'active':nav == 1}" ng-click="nav=1"><a href="#"> <img src="/images/png/glyphicons-21-home.png"/> {{'HOME'|translate}}</a></li>
+            <li ng-class="{'active':nav == 2}" ng-click="nav=2"><a href="#/qrscan"><img src="/images/png/glyphicons-761-scanner.png"/>{{'MAIN_SCAN'|translate}}</a></li>
+            <li ng-class="{'active':nav == 3}" ng-click="nav=3"><a href="#/about"><img src="/images/png/glyphicons-73-bookmark.png"/>{{'ABOUT'|translate}}</a></li>
+        </ul>
+    </nav>  
+        </div>
+        <div ng-view class="col-xs-12"></div>
+    </font>
 
 </body>
 

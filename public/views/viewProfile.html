@@ -1,14 +1,22 @@
-<div class="col-md-offset-3 col-xs-offset-1">
-    <h1> {{profileData.FirstName}} {{profileData.LastName}}</h1>
-    <div class="col-md-6">
-        <table class="table">
-            <tr ng-repeat="(key,value) in profileData">
-                <td>{{key}}</td>
-                <td>
-                    {{value}}
-                </td>
-            </tr>
-        </table>
-        <button class="btn btn-success col-md-4" ng-click="edit()" ng-show="isOwner">edit</button>
+<center>
+    <h1> {{profileData.fullName}}</h1></center>
+<div class="col-md-offset-3 col-xs-offset-1 col-md-4">
+
+    <table class="table">
+        <tr ng-repeat="(key,value) in profileData" ng-if="key!='fullName'">
+            <td><b>{{key}}</b></td>
+            <td>
+                {{value}}
+            </td>
+        </tr>
+    </table>
+    <div ng-show="isOwner">
+        <button class="btn btn-success col-md-4 col-md-offset-4" ng-click="edit()"><img src="/images/png/glyphicons-31-pencil.png" />{{'EDIT'|translate}}</button>
     </div>
+
+</div>
+<div class="col-md-3" ng-show="isOwner">
+    <br>
+    <h3>{{'VIEW_QR'|translate}}</h3>
+    <img src="{{QRUrl}}" class="col-md-12" />
 </div>

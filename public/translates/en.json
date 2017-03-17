@@ -1,0 +1,47 @@
+{
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "LOG_IN": "Log in",
+    "SIGN_UP": "sign up",
+    "EDIT": "Edit",
+    "IDENT": "Identifier",
+    "SUCCESS": "Success!",
+    "ERROR": "Error!",
+    "FORBIDDEN": "Forbidden!",
+    "ADD": "ADD",
+
+    "HOME": "Home",
+    "ABOUT": "About",
+    "TITLE": "F & R",
+    "MAIN_LOG": "Log to your account Now!",
+    "MAIN_SIGN": "Not have account yet?",
+    "MAIN_SCAN": "Scan Your QR code",
+
+    "CHANGE_LANG": "Change Languege",
+    "LOG_OFF": "Log Off",
+
+    "SIGN_TITLE": "Please sign up for our app (It's free!)",
+    "RTRN_PASSWORD": "Return Password",
+    "FULL_NAME": "Full Name",
+    "SIGN_ADD": "Add More Fields",
+    "SIGN_REG": "Register",
+
+    "VIEW_QR": "Your QR code:",
+    "SCAN_UPLOAD": "Upload Photo",
+    "SCAN_CANT": "Cannot decode the QR",
+    "SCAN_PROC": "Processing the QR....",
+
+    "SWAL_ADD": "Please Add any identifier that you want will appear in your profile",
+    "SWAL_ADD_TITLE": "Add new identifier",
+    "SWAL_CREATE": "Profile Created Successfully!",
+    "SWAL_EMAIL": "Email already exits in the system!",
+    "SWAL_ERROR": "Something Get Worng, Try again later",
+    "SWAL_NO_EMAIL": "Name and password doesn't exits",
+    "SWAL_NOT_FOUND": "Profile dont found!",
+
+    "MSG_EMAIL": "Please enter valid mail",
+    "MSG_PASS": "Passwords are not match",
+    "MSG_RED": "Red fields are required"
+
+
+}

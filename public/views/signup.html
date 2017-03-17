@@ -3,14 +3,14 @@
         <div class=" col-sm-6 col-sm-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Please sign up for our app <small>It's free!</small></h3>
+                    <h3 class="panel-title">{{'SIGN_TITLE'|translate}}</h3>
                 </div>
                 <div class="panel-body">
                     <table class="table">
                         <tr>
                             <td></td>
                             <td>
-                                <label class="control-label">Email</label>
+                                <label class="control-label">{{'EMAIL'|translate}}</label>
                             </td>
                             <td>
                                 <form name="form">
@@ -23,7 +23,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <label class="control-label">Password</label>
+                                <label class="control-label">{{'PASSWORD'|translate}}</label>
                             </td>
                             <td ng-class="{'has-error':!password}">
                                 <input type="password" ng-model="password" class="form-control">
@@ -33,7 +33,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <label class="control-label">Return Password</label>
+                                <label class="control-label">{{'RTRN_PASSWORD'|translate}}</label>
                             </td>
                             <td ng-class="{'has-error':password!=return}">
                                 <input type="password" ng-model="return" class="form-control ">
@@ -43,7 +43,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <label class="control-label">Full Name</label>
+                                <label class="control-label">{{'FULL_NAME'|translate}}</label>
                             </td>
                             <td ng-class="{'has-error':!fullName}">
                                 <input type="text" ng-model="fullName" class="form-control">
@@ -64,9 +64,10 @@
                     </table>
                     <div ng-repeat="msg in message" class="alert alert-danger" role="alert">{{msg}}</div>
 
-                    <button class="btn btn-success col-xs-offset-4  col-xs-4" ng-click="addfield()">+Add More Fields</button>
+                    <button class="btn btn-success   col-xs-4" ng-click="addfield()"><img src="/images/png/glyphicons-191-plus-sign.png" />{{'SIGN_ADD'|translate}}</button>
 
-                    <input type="submit" value="Register" ng-click="submit()" class="btn btn-info col-xs-offset-4  col-xs-4">
+                    <button ng-click="submit()" class="btn btn-info col-xs-offset-4  col-xs-4">
+                        <img src="/images/png/glyphicons-422-send.png" /> {{'SIGN_REG'|translate}}</button>
 
 
 
