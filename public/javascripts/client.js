@@ -23,6 +23,9 @@ app.config(['$routeProvider',
         when('/about', {
             templateUrl: '/views/about.html'
         }).
+        when('/print', {
+            templateUrl: '/views/print.html'
+        }).
         otherwise('/');
     }
   ]);
@@ -84,4 +87,25 @@ app.controller('qrCrtl', function ($scope, $rootScope, $location) {
     $scope.onVideoError = function (error) {
         alert(error);
     };
+});
+app.controller('printCtrl', function ($scope, sessionOn) {
+
+    sessionOn.check(function (session) {
+        $scope.profileKey = session.profileKey;
+    });
+
+    $scope.printDiv = function (divName) {
+        images = "";
+        for (var i = 0; i < 192 / $scope.size; i++) {
+            images += "<img class='col-xs-" + $scope.size + " nopadding' src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=" + window.location.origin + '/' + $scope.profileKey + "' />";
+        }
+
+
+        var popupWin = window.open('', '_blank', 'width=1200,height=700');
+        popupWin.document.open();
+        popupWin.document.write('<link href="/stylesheets/bootstrap.min.css" rel="stylesheet" /><style>.nopadding {padding: 0 !important;margin: 0 !important;}</style><body onload="window.print()">' + images + '</body>');
+        popupWin.document.close();
+    }
+
+
 });

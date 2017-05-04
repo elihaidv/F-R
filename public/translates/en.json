@@ -12,6 +12,7 @@
 
     "HOME": "Home",
     "ABOUT": "About",
+    "PRINT": "Print QR",
     "TITLE": "F & R",
     "MAIN_LOG": "Log to your account Now!",
     "MAIN_SIGN": "Not have account yet?",
@@ -41,7 +42,9 @@
 
     "MSG_EMAIL": "Please enter valid mail",
     "MSG_PASS": "Passwords are not match",
-    "MSG_RED": "Red fields are required"
-
-
+    "MSG_RED": "Red fields are required",
+    "NO_CONNECT_PRINT": "You must be log in to yor Profile to print QR",
+    "CAN_ORDER_PRINT": "Print stickers with your personal code",
+    "PRINT_STICKERS": "Print Stickers",
+    "CHOOSE_SIZE": "Choose Size"
 }

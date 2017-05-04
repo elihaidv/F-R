@@ -1,0 +1,16 @@
+<div ng-controller="printCtrl">
+    <center>
+        <h4>{{'CAN_ORDER_PRINT'|translate}}</h4>
+        <!--
+        <select ng-model='size' ng-init='size=4'>
+<option selected ></option>
+<option ng-repeat=v alue={{i}}>{{i}}</option>
+</select>
+-->
+        <select ng-model="size" class="custom-select" ng-options="i for i in [1,2,3,4,5,6]">
+            <option value="" disabled hidden>{{'CHOOSE_SIZE'|translate}}</option>
+        </select>
+        <button ng-disabled="!size" class="btn btn-primary" ng-click="printDiv()">{{'PRINT_STICKERS'|translate}}</button>
+    </center>
+
+</div>
